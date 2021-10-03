@@ -8,10 +8,12 @@
         <entry key="..\:/AndroidProject/MemoApp/app/src/main/res/layout/item_memo.xml" value="0.264" />
         <entry key="..\:/AndroidProject/MemoApp/app/src/main/res/layout/item_todo.xml" value="0.264" />
         <entry key="..\:/AndroidProject/MemoApp/app/src/main/res/layout/todo_memo.xml" value="0.25" />
+        <entry key="..\:/Users/82107/Desktop/repo/MemoApp/app/src/main/res/layout/activity_main.xml" value="0.1621376811594203" />
+        <entry key="..\:/Users/82107/Desktop/repo/MemoApp/app/src/main/res/layout/item_memo.xml" value="0.15760869565217392" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

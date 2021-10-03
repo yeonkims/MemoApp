@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 @SuppressLint("StaticFieldLeak")
@@ -28,6 +30,8 @@ class MainActivity : AppCompatActivity() {
             val memo = MemoEntity(null, edittext_memo.text.toString())
             insertMemo(memo)
         }
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     // 1. Insert Data
@@ -44,16 +48,17 @@ class MainActivity : AppCompatActivity() {
         // 모든 화면(UI)과 관련된 작업들은 MainThread에서 이뤄져야 한다
         // 모든 데이터 통신과 관련된 일들은 WorkerThread에서 이뤄져야 한다 (API 통신, DB CRUD)
 
-        val insertTask = object : AsyncTask<Unit, Unit, Unit>(){
-            override fun doInBackground(vararg p0: Unit?) {
+        val insertTask = (object : AsyncTask<Unit, Unit, List<MemoEntity>>(){
+            override fun doInBackground(vararg p0: Unit?): List<MemoEntity>? {
                 db.memoDAO().insert(memo)
+                return memoList
             }
 
-            override fun onPostExecute(result: Unit?) {
+            override fun onPostExecute(result: List<MemoEntity>?) {
                 super.onPostExecute(result)
                 getAllMemos()
             }
-        }
+        }).execute()
     }
 
     // AsyncTask : 백그라운드 작업을 도와주는 추상클래스 (오버라이드 되었으니까)
@@ -77,5 +82,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setRecyclerView(memoList: List<MemoEntity>) {
+        recyclerView.adapter = MyAdapter(this, memoList)
     }
 }
